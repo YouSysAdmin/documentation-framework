@@ -1,5 +1,6 @@
 # Project Documentation Framework
 
+![Project Logo](static/images/doc-logo-dark.svg)
 
 **Sources:**
 
