@@ -1,0 +1,32 @@
+{{ .Scratch.Set "content" "" }}
+{{ .Scratch.Set "identifier" "" }}
+
+{{ $identifier := "" }}
+
+{{ $filepath := .Get "file"}}
+{{ if not $filepath -}}
+{{ errorf "missing path to file" }}
+{{ end }}
+
+{{ if (fileExists $filepath) }}
+{{ .Scratch.Set "content" ($filepath | readFile) }}
+{{ .Scratch.Set "identifier" (first 10 (md5 (.Scratch.Get "content"))) }}
+{{ else }}
+{{ errorf "Shortcode 'code': Invalid path to the file with source code or file %q not exist. Source file: %q" $filepath .Page.File.Path }}
+{{ end}}
+
+{{ $lang := .Get "lang" }}
+
+{{ if $.Site.Params.Debug }}
+<div class="shortcode-debug"  >
+    <strong>code shortcode</strong><br>
+    <strong>From file:</strong><i> {{ $filepath }}</i><br>
+    <strong>Lang:</strong><i> {{ $lang }}</i>
+    <hr />
+{{ end }}
+
+    {{ (print "```" $lang "\n" (.Scratch.Get "content") "\n```") | markdownify }}
+
+{{ if $.Site.Params.Debug }}
+</div>
+{{ end }}

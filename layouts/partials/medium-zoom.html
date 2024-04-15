@@ -1,0 +1,15 @@
+{{- $MediumZoomJS := resources.Get "js/medium-zoom.min.js" | fingerprint -}}
+{{- $MediumZoomRenderJS := resources.Get "js/medium-zoom-render.js" | fingerprint -}}
+
+<!-- MediumZoom template -->
+<template id="template-medium-zoom">
+  <div class="medium-zoom-wrapper">
+    <section class="medium-zoom-main" data-zoom-close>
+      <div class="medium-zoom-container" data-zoom-container></div>
+    </section>
+  </div>
+</template>
+
+<!-- Medium Zoom -->
+<script defer src="{{ $MediumZoomJS.RelPermalink }}" integrity="{{ $MediumZoomJS.Data.Integrity }}"></script>
+<script defer src="{{ $MediumZoomRenderJS.RelPermalink }}" integrity="{{ $MediumZoomRenderJS.Data.Integrity }}"></script>
