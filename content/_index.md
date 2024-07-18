@@ -15,7 +15,7 @@ width: normal
 
 <div class="mt-6 mb-6">
 {{< hextra/hero-headline >}}
-  Project Documentation
+  Project Documentation Template
 {{< /hextra/hero-headline >}}
 </div>
 
