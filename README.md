@@ -2,6 +2,8 @@
 
 ![Project Logo](static/images/doc-logo-dark.svg)
 
+Demo: https://docs.yousysadmin.com
+
 **Sources:**
 
 Hugo template: [Hextra](https://github.com/imfing/hextra)
