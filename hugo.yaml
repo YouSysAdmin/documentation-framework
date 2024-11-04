@@ -29,11 +29,11 @@ languages:
 module:
   hugoVersion:
     extended: true
-    min: "0.114.0"
+    min: "0.136.0"
 
   workspace: hugo.work
-  imports:
-    - path: github.com/imfing/hextra
+#  imports:
+#    - path: github.com/imfing/hextra
 
 markup:
   goldmark:
@@ -43,6 +43,8 @@ markup:
     noClasses: false
 
 enableInlineShortcodes: true
+
+theme: hextra
 
 menu:
   main:
