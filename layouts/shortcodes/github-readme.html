@@ -1,7 +1,7 @@
 <!-- get path to file to read with first param of shortcode -->
 {{ $repo := .Get 0 }}
 <!-- readfile at given path -->
-{{ $json := getJSON "https://api.github.com/repos/" $repo "/readme" }}
+{{ $json := resources.GetRemote "https://api.github.com/repos/" $repo "/readme" | transform.Unmarshal }}
 
 {{ if $.Site.Params.Debug }}
 <div class="shortcode-debug">
