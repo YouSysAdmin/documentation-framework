@@ -77,6 +77,12 @@ _You **can** combine them_
 
 ![GitHub Logo](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)
 
+If needed, you can also use [the `figure` shortcode](https://gohugo.io/shortcodes/figure/) to add attributes such as a width limit:
+
+```markdown
+{{</* figure src="/images/your-image.jpg" alt="Alt text" title="Title of the image" width="800px" */>}}
+```
+
 ### Links
 
 ```markdown

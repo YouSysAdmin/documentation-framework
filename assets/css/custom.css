@@ -1,339 +1,695 @@
 /* -----------------------------------------------
          This code is overriding default theme
             configuration and classes
---------------------------------------------------*/
+-------------------------------------------------*/
 
 /* -----------------------------------------
-            Customize code-block
--------------------------------------------*/
-code,
-kbd,
-samp,
-pre {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; /* 1 */
-    font-size: 1em; /* 2 */
-    font-weight: 400;
-    font-style: normal;
+            Fonts and typography
+------------------------------------------*/
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-weight: 700;
+  src: url('/fonts/plus-jakarta-sans-v8-latin-700.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+       url('/fonts/plus-jakarta-sans-v8-latin-700.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
 }
 
-/* -----------------------------------------
-Fix the opacity of images during the use dark theme
-While using the dark theme apply 80% opacity
-for all images to reduce bright.
--------------------------------------------*/
-:is(html[class~="dark"] img) {
-  /*filter: brightness(80%);*/
-  opacity: 0.8;
-}
-
-/* Colors */
 :root {
-    --primary-hue: 235deg;
+  --red-color: rgb(203, 28, 66);
+  --blue-color: rgb(0, 172, 230);
+  --purple-color: rgb(58, 56, 113);
+  --dark-background-color: rgba(227, 210, 210, 0);
+  --hx-tracking-tighter: +0.005em;
 }
 
-.bg-gray-100 {
-    background-color: #f1f0fb;
-}
-
-.bg-gray-200 {
-    background-color: rgb(214, 207, 251);
-}
-
-.bg-gray-custom {
-    background-color: #f5f5f5;
-}
-
-/* Colors for dark theme */
-.dark {
-    --primary-hue: -165deg;
-}
-
-
-/* Fonts */
 h1, .content h1,
 .content h2,
 .content h3,
-.content h3
-.content h4
-.content h5
-.content h6 {
-    font-family: 'Roboto', sans-serif;
-}
-
-/* Override line color in code block */
-:is(html[class~="dark"] .chroma .ln), :is(html[class~="dark"] .chroma .lnt:not(.hl > .lnt)), :is(html[class~="dark"] .chroma .hl:not(.line)),
-.chroma .ln, .chroma .lnt:not(.hl > .lnt), .chroma .hl:not(.line) {
-    color: rgb(82 82 82 / .7)
+.content h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 .highlight .chroma .err {
-    color: #a61717;
-    background-color: rgba(227, 210, 210, 0);
+  color: var(--red-color);
+  background-color: var(--dark-background-color);
+}
+
+html:not([class~="dark"]) .sidebar-active-item {
+  background-color: rgb(224, 227, 255) !important;
+  color: rgb(0, 14, 163) !important;
 }
 
 /* Override border-radius class to fit Clever's theme */
-.rounded,
-.rounded-xl,
-.rounded-3xl,
-.rounded-lg,
-.rounded-md,
-.rounded-sm,
-.code-block pre:not(.lntable pre),
-.code-block .filename,
+.btn-secondary,
+.btn-primary,
 .chroma .lntable,
 .content img,
-.content div.gist-file,
-.btn-secondary,
+.hx\:rounded-xl,
+.hx\:rounded-3xl {
+  border-radius: 0rem;
+}
+
+/* -----------------------------
+            Shortcodes
+----------------------------- */
+
+/* Hero buttons on home page */
 .btn-primary {
-    border-radius: 0rem;
+  background-color: var(--purple-color);
+  text-decoration: none;
 }
 
-/* -----------------------------------------
-            Customize shortcodes
--------------------------------------------*/
-
-/* Hero buttons */
-.btn-primary {
-    background-color: rgba(58, 56, 113, 1);
-    text-decoration: none;
-}
-
-html[class~="dark"] .btn-primary {
-    color: white;
-}
-
-.btn-primary:hover {
-    background-color: rgba(203, 28, 66, 1);
-    color: white;
-}
-
-.btn-secondary:hover {
-    background-color: rgba(245, 116, 97, 1);
-    color: white;
-}
-
-/* Cards */
-.hextra-cards,
-.hextra-feature-card,
-.hextra-card {
-    border-radius: 0.29rem;
-}
-
-.img-grid {
-    grid-template-columns: repeat(auto-fill, minmax(max(250px, calc((100% - 1rem * 2) / var(--rows))), 1fr));
-    width: 100%;
-    height: 100%;
+.btn-primary:hover, .btn-secondary:hover {
+  background-color: var(--red-color);
+  color: white;
 }
 
 /* Steps
 Allow inserting "steps" shortcode with h4 */
 .steps h4 {
-    counter-increment: step;
+  counter-increment: step;
 }
 
-.steps h4:before, .steps h3:before {
-    position: absolute;
-    height: 33px;
-    width: 33px;
-    border-width: 4px;
-    --tw-border-opacity: 1;
-    border-radius: 9999px;
-    border-color: #5754aa;
-    background-color: #5754aa;
-    text-align: center;
-    font-size: 1rem;
-    font-weight: 700;
-    --tw-text-opacity: 1;
-    color: white;
-    margin-top: -1px;
-    margin-left: -41px;
-    content: counter(step);
+.steps h4:before,.steps h3:before {
+  position: absolute;
+  height: 33px;
+  width: 33px;
+  border-width: 4px;
+  --tw-border-opacity: 1;
+  border-radius: 9999px;
+  border-color: var(--purple-color);
+  background-color: var(--purple-color);
+  text-align: center;
+  font-size: 1rem;
+  font-weight:700;
+  --tw-text-opacity: 1;
+  color: white;
+  margin-top: -1px;
+  margin-left: -41px;
+  content: counter(step);
+  }
+
+  .steps h3:before{
+    margin-top:2px
+  }
+
+.steps h4,.steps h3{
+  font-family: inherit;
 }
 
-.steps h3:before {
-    margin-top: 2px
+:is(html[class~="dark"] .steps h4):before,:is(html[class~="dark"] .steps h3):before {
+  --tw-border-opacity: 1;
+  border-color: rgb(38 38 38 / var(--tw-border-opacity));
+  --tw-bg-opacity: 1;
+  background-color: rgb(38 38 38 / var(--tw-bg-opacity));
 }
 
-.steps h4, .steps h3 {
-    font-family: inherit;
-}
-
-:is(html[class~="dark"] .steps h4):before, :is(html[class~="dark"] .steps h3):before {
-    --tw-border-opacity: 1;
-    border-color: rgb(38 38 38 / var(--tw-border-opacity));
-    --tw-bg-opacity: 1;
-    background-color: rgb(38 38 38 / var(--tw-bg-opacity));
-}
-
-/* -----------------------------------------------------
-               Links styles
-_______________________________________________________*/
-
-/* Prevent linked text to be underlined or change color.
-  Useful for beautiful cards */
-a.no-underline {
-    text-decoration: none;
-}
+/* --------------
+      Links
+--------------- */
 
 /* Custom link color.
 This will be applied also to code (except in tables):
 selectors in css can't be grained to target Markdown syntax
 (for now) */
-.content p a:not(.code),
-.content li a:not(.code),
-.content :where(a):not(:where([class~=not-prose],[class~=not-prose] *)), /* Ensure links are the same color in shortodes as well*/
-article a {
-    text-decoration-line: underline;
-    text-decoration-style: dotted;
-    text-decoration-color: rgb(214, 207, 251);
-    color: rgb(90, 66, 212);
+html[class~="dark"] .content p a,
+html[class~="dark"] article .content p a,
+html[class~="dark"] article .content div a:not(.hextra-feature-card) ,
+html[class~="dark"] article .content li a {
+  color: var(--blue-color);
+  text-decoration-style: dotted;
 }
 
-html[class~="dark"] .content p a:not(.code),
-html[class~="dark"] .content li a:not(.code),
-html[class~="dark"] article a {
-    color: rgb(0, 172, 230);
+html[class~="dark"] button[data-state="selected"],
+html[class~="dark"] .sidebar-active-item {
+  color: var(--blue-color) !important;
 }
 
-/* Allow linking in a variable environment without
-changing the style and adding an a arrow at the end of the text */
-.content a:has(code) {
-    text-decoration: none;
-    color: inherit;
+article .content a:hover:not(.hextra-feature-card),
+article main h4 a:hover {
+  color: var(--red-color) !important;
+  text-decoration-style: dotted;
 }
 
-/* Display an arrow at the end of the linked variable */
+/* Don't change the style for an inline code within a link
+Mostly used in environment variables table */
+.content a:has(code){
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Display an arrow at the end of the linked inline code */
 .content a:not(.code-block code) code::after {
-    content: "\00a0↗";
+  content: "\00a0↗";
     color: tomato;
-    font-size: 1.1rem;
-
-}
-
-/* Display arrow for external links in the main menu.
-  Don't display it if it's an icon */
-.nav-container a[href^="http://"]:not(:has(svg))::after,
-.nav-container a[href^="https://"]:not(:has(svg))::after {
-    content: "\00a0↗";
     font-size: 1rem;
+    bottom: -2px;
+    position: relative;
+    left: 4px;
+    width: 14px;
+    display: inline-block;
+    height: 14px;
+    line-height: 0.35em;
 }
 
-/*--------------------------------------------------------
-                          Table Styling
-----------------------------------------------------------*/
+/* ---------------
+      Tables
+--------------- */
 
 /* Table headers formatting */
 .content table:not(.code-block table) th {
-    border-right-width: 0px;
-    border-left-width: 0px;
-    border-top: none;
-    text-transform: uppercase;
-    color: rgba(115, 115, 142, 1);
+  border-right-width: 0px;
+  border-left-width: 0px;
+  border-top: none;
+  text-transform: uppercase;
+  color: rgba(115, 115, 142, 1);
 }
 
 /* Table headers formatting for dark mode */
 html[class~="dark"] .content table:not(.code-block table) th {
-    color: rgb(193, 193, 196);
+  color: rgb(193, 193, 196);
 }
 
-/* Remove internal borders */
+/* Remove most of the borders */
 .content table:not(.code-block table) td {
-    margin: 0px;
-    border-width: 0px;
-    --tw-border-opacity: 0;
+  margin: 0px;
+  border-width: 0px;
+  --tw-border-opacity: 0;
 }
 
 /* Text in cells */
 .content table:not(.code-block table) tr {
-    font-size: 0.8rem;
-    text-align: left;
-    border-width: 0px;
-    color: rgba(58, 56, 113, 1);
+  font-size: 0.9rem;
+  border-width: 0px;
 }
 
-/* Text in cells for dark mode */
-html[class~="dark"] .content table:not(.code-block table) tr {
-    color: #ececfe;
+/* Zebra striping for table rows */
+.content table:not(.code-block table) tbody tr:nth-child(even) {
+  background-color: rgb(243, 244, 246); /* Gray-100 */
 }
 
-/* Animation for 404 pages */
+.content table:not(.code-block table) tbody tr:nth-child(odd) {
+  background-color: transparent;
+}
+
+/* Dark mode zebra striping */
+html[class~="dark"] .content table:not(.code-block table) tbody tr:nth-child(even) {
+  background-color: rgba(75, 85, 99, 0.2); /* Gray-600 with 20% opacity */
+}
+
+html[class~="dark"] .content table:not(.code-block table) tbody tr:nth-child(odd) {
+  background-color: transparent;
+}
+
+/* ---------------------------------------
+          Animation for 404 page
+--------------------------------------- */
 .animate__headShake {
-    -webkit-animation-timing-function: ease-in-out;
-    animation-timing-function: ease-in-out;
-    -webkit-animation-name: headShake;
-    animation-name: headShake
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-name: headShake;
+  animation-name:headShake
 }
-
 .animate__animated {
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 
 @keyframes headShake {
     0% {
         -webkit-transform: translateX(0);
-        transform: translateX(0)
+        transform:translateX(0)
     }
 
     6.5% {
         -webkit-transform: translateX(-6px) rotateY(-9deg);
-        transform: translateX(-6px) rotateY(-9deg)
+        transform:translateX(-6px) rotateY(-9deg)
     }
 
     18.5% {
         -webkit-transform: translateX(5px) rotateY(7deg);
-        transform: translateX(5px) rotateY(7deg)
+        transform:translateX(5px) rotateY(7deg)
     }
 
     31.5% {
         -webkit-transform: translateX(-3px) rotateY(-5deg);
-        transform: translateX(-3px) rotateY(-5deg)
+        transform:translateX(-3px) rotateY(-5deg)
     }
 
     43.5% {
         -webkit-transform: translateX(2px) rotateY(3deg);
-        transform: translateX(2px) rotateY(3deg)
+        transform:translateX(2px) rotateY(3deg)
     }
 
     50% {
         -webkit-transform: translateX(0);
-        transform: translateX(0)
+        transform:translateX(0)
     }
 }
 
-/* -----------------------------------------
-            Customize paragraphs
--------------------------------------------*/
-.content :where(p):not(:where([class~=not-prose],[class~=not-prose] *)) {
-    margin-top: .3rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.75rem;
+/* -------------------------
+            Changelog
+------------------------- */
+
+/* Entries listing--*/
+.hx\:pl-5 {
+  padding-left: 1.25rem;
 }
 
-/* -----------------------------------------
-MediaZoom
---------------------------------------------*/
-.medium-zoom-wrapper {
-    position: fixed;
-    display: flex;
-    top: 50px;
-    left: 0;
+/* -------------------------
+        OpenAPI / Swagger UI
+------------------------- */
+
+#swagger-ui {
+    height: calc(100vh - var(--navbar-height));
+    min-height: 600px;
     width: 100%;
-    height: 95vh;
-}
+  }
 
+  /* Dark theme adaptations for Swagger UI */
+  html[class~="dark"] .swagger-ui {
+    color: rgb(209 213 219);
+  }
 
+  html[class~="dark"] .swagger-ui .info .title {
+    color: rgb(243 244 246);
+  }
 
-.medium-zoom-container {
-    width: 100%;
-    height: 100%;
-}
+  html[class~="dark"] .swagger-ui .info .description,
+  html[class~="dark"] .swagger-ui .info .description p {
+    color: rgb(209 213 219);
+  }
 
-.medium-zoom-main {
-    flex: 1;
-    height: 100%;
-}
+  html[class~="dark"] .swagger-ui .opblock .opblock-summary-description,
+  html[class~="dark"] .swagger-ui .opblock .opblock-summary-path,
+  html[class~="dark"] .swagger-ui .opblock-description-wrapper p {
+    color: rgb(209 213 219);
+  }
+
+  html[class~="dark"] .swagger-ui .opblock-tag {
+    color: rgb(243 244 246);
+    border-bottom: 1px solid rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui .parameter__name {
+    color: rgb(243 244 246);
+  }
+
+  html[class~="dark"] .swagger-ui .parameter__type {
+    color: rgb(156 163 175);
+  }
+
+  html[class~="dark"] .swagger-ui table thead tr td,
+  html[class~="dark"] .swagger-ui table thead tr th {
+    color: rgb(243 244 246);
+    border-bottom: 1px solid rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui .model-title {
+    color: rgb(243 244 246);
+  }
+
+  html[class~="dark"] .swagger-ui .prop-type {
+    color: rgb(156 163 175);
+  }
+
+  html[class~="dark"] .swagger-ui .prop-name {
+    color: rgb(209 213 219);
+  }
+
+  html[class~="dark"] .swagger-ui .response-col_status {
+    color: rgb(243 244 246);
+  }
+
+  html[class~="dark"] .swagger-ui .response-col_description {
+    color: rgb(209 213 219);
+  }
+
+  html[class~="dark"] .swagger-ui .renderedMarkdown p {
+    color: rgb(209 213 219);
+  }
+
+  html[class~="dark"] .swagger-ui .markdown p,
+  html[class~="dark"] .swagger-ui .markdown pre {
+    color: rgb(209 213 219);
+  }
+
+  html[class~="dark"] .swagger-ui .model .property {
+    color: rgb(209 213 219);
+  }
+
+  html[class~="dark"] .swagger-ui .model .property-row {
+    border-bottom: 1px solid rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui textarea {
+    background-color: rgb(31 41 55);
+    color: rgb(209 213 219);
+    border: 1px solid rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui input[type=text],
+  html[class~="dark"] .swagger-ui input[type=password],
+  html[class~="dark"] .swagger-ui input[type=search],
+  html[class~="dark"] .swagger-ui input[type=email],
+  html[class~="dark"] .swagger-ui input[type=url] {
+    background-color: rgb(31 41 55);
+    color: rgb(209 213 219);
+    border: 1px solid rgb(75 85 99);
+  }
+
+  /* Additional comprehensive dark theme styles */
+  html[class~="dark"] .swagger-ui .opblock .opblock-summary {
+    color: rgb(243 244 246);
+    border-bottom: 1px solid rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui .opblock .opblock-summary .opblock-summary-method {
+    background: rgb(55 65 81);
+    color: rgb(243 244 246);
+  }
+
+  html[class~="dark"] .swagger-ui .opblock.opblock-get .opblock-summary-method {
+    background: rgb(34 197 94);
+  }
+
+  html[class~="dark"] .swagger-ui .opblock.opblock-post .opblock-summary-method {
+    background: rgb(59 130 246);
+  }
+
+  html[class~="dark"] .swagger-ui .opblock.opblock-put .opblock-summary-method {
+    background: rgb(245 158 11);
+  }
+
+  html[class~="dark"] .swagger-ui .opblock.opblock-delete .opblock-summary-method {
+    background: rgb(239 68 68);
+  }
+
+  html[class~="dark"] .swagger-ui .opblock.opblock-patch .opblock-summary-method {
+    background: rgb(168 85 247);
+  }
+
+  html[class~="dark"] .swagger-ui .opblock .opblock-summary-path__deprecated {
+    color: rgb(156 163 175);
+    text-decoration: line-through;
+  }
+
+  html[class~="dark"] .swagger-ui .opblock-body {
+    background: rgb(17 24 39);
+  }
+
+  html[class~="dark"] .swagger-ui .opblock-description-wrapper p,
+  html[class~="dark"] .swagger-ui .opblock-external-docs-wrapper p {
+    color: rgb(209 213 219);
+  }
+
+  html[class~="dark"] .swagger-ui .parameters-container {
+    background: rgb(31 41 55);
+    border: 1px solid rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui .parameter-item {
+    border-bottom: 1px solid rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui .parameter-item .parameter-item-content {
+    background: transparent;
+  }
+
+  html[class~="dark"] .swagger-ui .responses-wrapper {
+    background: rgb(31 41 55);
+    border: 1px solid rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui .response-col_status,
+  html[class~="dark"] .swagger-ui .response-col_description {
+    color: rgb(209 213 219);
+  }
+
+  html[class~="dark"] .swagger-ui .response {
+    border-bottom: 1px solid rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui .btn {
+    background: rgb(55 65 81);
+    color: rgb(243 244 246);
+    border: 1px solid rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui .btn:hover {
+    background: rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui .btn.authorize {
+    background: rgb(59 130 246);
+    border-color: rgb(59 130 246);
+  }
+
+  html[class~="dark"] .swagger-ui .btn.authorize:hover {
+    background: rgb(37 99 235);
+  }
+
+  html[class~="dark"] .swagger-ui .btn.execute {
+    background: rgb(34 197 94);
+    border-color: rgb(34 197 94);
+  }
+
+  html[class~="dark"] .swagger-ui .btn.execute:hover {
+    background: rgb(22 163 74);
+  }
+
+  html[class~="dark"] .swagger-ui .btn.cancel {
+    background: rgb(239 68 68);
+    border-color: rgb(239 68 68);
+  }
+
+  html[class~="dark"] .swagger-ui .btn.cancel:hover {
+    background: rgb(220 38 38);
+  }
+
+  html[class~="dark"] .swagger-ui select {
+    background: rgb(31 41 55);
+    color: rgb(209 213 219);
+    border: 1px solid rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui .curl-command {
+    background: rgb(17 24 39);
+    color: rgb(209 213 219);
+    border: 1px solid rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui .copy-to-clipboard {
+    background: rgb(55 65 81);
+    color: rgb(243 244 246);
+  }
+
+  html[class~="dark"] .swagger-ui .copy-to-clipboard:hover {
+    background: rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui .model-box {
+    background: rgb(31 41 55);
+    border: 1px solid rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui .model-toggle {
+    color: rgb(209 213 219);
+  }
+
+  html[class~="dark"] .swagger-ui .model-toggle:hover {
+    color: rgb(243 244 246);
+  }
+
+  html[class~="dark"] .swagger-ui .model-jump-to-path {
+    color: rgb(59 130 246);
+  }
+
+  html[class~="dark"] .swagger-ui .model-jump-to-path:hover {
+    color: rgb(37 99 235);
+  }
+
+  html[class~="dark"] .swagger-ui .auth-wrapper {
+    background: rgb(31 41 55);
+    border: 1px solid rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui .auth-container .auth-wrapper h4 {
+    color: rgb(243 244 246);
+  }
+
+  html[class~="dark"] .swagger-ui .auth-container .auth-wrapper .auth-btn-wrapper {
+    background: transparent;
+  }
+
+  html[class~="dark"] .swagger-ui .scheme-container .schemes > label {
+    color: rgb(209 213 219);
+  }
+
+  html[class~="dark"] .swagger-ui .loading-container .loading::after {
+    color: rgb(209 213 219);
+  }
+
+  html[class~="dark"] .swagger-ui .topbar .download-url-wrapper input[type=text] {
+    background: rgb(31 41 55);
+    color: rgb(209 213 219);
+    border: 1px solid rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui .topbar .download-url-wrapper .download-url-button {
+    background: rgb(55 65 81);
+    color: rgb(243 244 246);
+  }
+
+  /* Servers section */
+  html[class~="dark"] .swagger-ui .servers > label {
+    color: rgb(243 244 246);
+  }
+
+  html[class~="dark"] .swagger-ui .servers > .servers-title {
+    color: rgb(243 244 246);
+  }
+
+  html[class~="dark"] .swagger-ui .servers .server-url {
+    background: rgb(31 41 55);
+    color: rgb(209 213 219);
+    border: 1px solid rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui .servers .server-description {
+    color: rgb(156 163 175);
+  }
+
+  /* Filter input */
+  html[class~="dark"] .swagger-ui .filter-container {
+    background: rgb(31 41 55);
+    border-top: 1px solid rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui .filter .operation-filter-input {
+    background: rgb(17 24 39);
+    color: rgb(209 213 219);
+    border: 1px solid rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui .filter .operation-filter-input:focus {
+    border-color: rgb(59 130 246);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  }
+
+  html[class~="dark"] .swagger-ui .filter .operation-filter-input::placeholder {
+    color: rgb(107 114 128);
+  }
+
+  /* Additional missing elements */
+  html[class~="dark"] .swagger-ui .errors-wrapper {
+    background: rgb(127 29 29);
+    border: 1px solid rgb(185 28 28);
+    color: rgb(254 226 226);
+  }
+
+  html[class~="dark"] .swagger-ui .errors-wrapper .error-wrapper {
+    background: transparent;
+  }
+
+  html[class~="dark"] .swagger-ui .global-server-container {
+    background: rgb(31 41 55);
+    border: 1px solid rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui .global-server-container .servers-title {
+    color: rgb(243 244 246);
+  }
+
+  html[class~="dark"] .swagger-ui .info .base-url {
+    color: rgb(156 163 175);
+  }
+
+  html[class~="dark"] .swagger-ui .scheme-container {
+    background: rgb(31 41 55);
+    border: 1px solid rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui .scheme-container .schemes-title {
+    color: rgb(243 244 246);
+  }
+
+  html[class~="dark"] .swagger-ui .scheme-container select {
+    background: rgb(17 24 39);
+    color: rgb(209 213 219);
+    border: 1px solid rgb(75 85 99);
+  }
+
+  /* JSON/XML response content */
+  html[class~="dark"] .swagger-ui .highlight-code {
+    background: rgb(17 24 39);
+    color: rgb(209 213 219);
+    border: 1px solid rgb(75 85 99);
+  }
+
+  html[class~="dark"] .swagger-ui .highlight-code .hljs {
+    background: rgb(17 24 39);
+    color: rgb(209 213 219);
+  }
+
+  /* Arrows and expand/collapse icons */
+  html[class~="dark"] .swagger-ui .opblock-summary .opblock-summary-control {
+    color: rgb(209 213 219);
+  }
+
+  html[class~="dark"] .swagger-ui .opblock-summary .opblock-summary-control svg {
+    fill: rgb(209 213 219);
+  }
+
+  html[class~="dark"] .swagger-ui .expand-operation svg,
+  html[class~="dark"] .swagger-ui .collapse-operation svg {
+    fill: rgb(209 213 219);
+  }
+
+  html[class~="dark"] .swagger-ui .model-toggle::after {
+    color: rgb(209 213 219);
+  }
+
+  html[class~="dark"] .swagger-ui .model-box-control {
+    color: rgb(209 213 219);
+  }
+
+  html[class~="dark"] .swagger-ui .model-box-control svg {
+    fill: rgb(209 213 219);
+  }
+
+  html[class~="dark"] .swagger-ui .prop-toggle {
+    color: rgb(209 213 219);
+  }
+
+  html[class~="dark"] .swagger-ui .prop-toggle svg {
+    fill: rgb(209 213 219);
+  }
+
+  /* Arrow for dropdowns - remove multiple arrows */
+  html[class~="dark"] .swagger-ui select {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23D1D5DB' d='m8 10.293 3.146-3.147.708.708L8 11.707 4.146 7.854l.708-.708L8 10.293z'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 16px center !important;
+    background-size: 14px 14px !important;
+    padding-right: 40px !important;
+  }
+
+  /* Caret icons in various places */
+  html[class~="dark"] .swagger-ui .btn svg,
+  html[class~="dark"] .swagger-ui button svg {
+    fill: currentColor;
+  }
+
+  /* Parameter expand/collapse arrows */
+  html[class~="dark"] .swagger-ui .parameters-container .parameter-item .parameter-item-header .parameter-item-toggle svg {
+    fill: rgb(209 213 219);
+  }
+
+  /* Response expand/collapse arrows */
+  html[class~="dark"] .swagger-ui .responses-wrapper .response-header .response-toggle svg {
+    fill: rgb(209 213 219);
+  }

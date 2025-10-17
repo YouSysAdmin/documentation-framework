@@ -1,0 +1,5 @@
+IaaS  = "Infrastructure as a Service"
+PaaS  = "Platform as a Service"
+EIDAS = "Electronic Identification, Authentication and trust Services"
+SPA   = "Single Page Application"
+RP    = "Reverse Proxy"

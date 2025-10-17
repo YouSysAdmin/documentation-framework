@@ -1,8 +1,17 @@
-# Directories
-node_modules/
-public/
-resources/
-_vendor/
+# System files
+**/.DS_Store
+.DS_Store
+Thumbs.db
 
-# Files
-.hugo_build.lock
+# Configuration files
+.clever.json
+.vale.ini
+
+# Build/cache files/folders
+/.hugo_build.lock
+/public/
+/resources/
+
+# IDEs/Editors
+/.idea/
+.vscode/

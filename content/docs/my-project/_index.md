@@ -1,5 +1,6 @@
 ---
 linkTitle: "My Project"
+weight: 2
 title: My Project Documentation
 #draft: true
 ---
