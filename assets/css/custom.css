@@ -176,6 +176,12 @@ html[class~="dark"] .content table:not(.code-block table) th {
   --tw-border-opacity: 0;
 }
 
+.content :where(table):not(:where(.hextra-code-block table,
+[class~=not-prose],
+[class~=not-prose] *)) td:first-child {
+  padding-left:calc(var(--hx-spacing)*2);
+}
+
 /* Text in cells */
 .content table:not(.code-block table) tr {
   font-size: 0.9rem;
