@@ -3,7 +3,7 @@
 
 {{ if .Site.Params.devNotes.enabled -}}
 <div class="hx:overflow-x-auto hx:mt-6 hx:flex hx:rounded-lg hx:border hx:py-2 ltr:pr-4 rtl:pl-4 hx:border-current hx:dark:border-current {{ $class }}">
-  <div class="hx:pl-3 hx:pr-2 hx:pr-3 hx:pl-2">
+  <div class="hx:pl-5 hx:pr-2 hx:pr-3 hx:pl-2">
       {{- with $icon }}
         {{ partial "utils/icon.html" (dict "name" . "attributes" `height=1.2em class="inline-block align-middle"`) -}}
       {{- end -}}
